@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+INTELLIGENCE IN HEALTH CARE
+</title>
+
+<style>
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+
+}
+
+body{
+
+background:
+linear-gradient(
+135deg,
+#050816,
+#0d1b4d,
+#1b1464,
+#3c1361,
+#120136
+);
+
+color:white;
+
+overflow-x:hidden;
+
+min-height:100vh;
+
+}
+
+/* STARS */
+
+body::before{
+
+content:'';
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background-image:
+
+radial-gradient(
+white 1px,
+transparent 1px
+);
+
+background-size:
+50px 50px;
+
+opacity:.3;
+
+animation:
+starsMove 40s linear infinite;
+
+pointer-events:none;
+
+}
+
+@keyframes starsMove{
+
+0%{
+transform:translateY(0);
+}
+
+100%{
+transform:translateY(-100px);
+}
+
+}
+
+.page{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+/* VISITOR */
+
+.visitor{
+
+position:absolute;
+
+top:20px;
+
+right:20px;
+
+padding:15px;
+
+background:
+rgba(255,255,255,.1);
+
+backdrop-filter:
+blur(15px);
+
+border-radius:20px;
+
+}
+
+/* HEALTH TIPS */
+
+.tipsBox{
+
+position:absolute;
+
+left:20px;
+
+top:20px;
+
+width:260px;
+
+padding:20px;
+
+background:
+rgba(255,255,255,.1);
+
+backdrop-filter:
+blur(15px);
+
+border-radius:20px;
+
+text-align:center;
+
+}
+
+.tipsBox h3{
+
+color:#00ffff;
+
+margin-bottom:15px;
+
+}
+
+#tipText{
+
+font-size:20px;
+
+font-weight:bold;
+
+color:white;
+
+}
+
+/* HOME */
+
+.hero{
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+padding:20px;
+
+}
+
+.hero h1{
+
+font-size:60px;
+
+text-shadow:
+
+0 0 10px #00ffff,
+
+0 0 20px #00ffff,
+
+0 0 40px #00ffff;
+
+margin-bottom:20px;
+
+}
+
+.hero p{
+
+font-size:24px;
+
+margin-bottom:30px;
+
+}
+
+.main-btn{
+
+padding:15px 35px;
+
+font-size:18px;
+
+border:none;
+
+border-radius:30px;
+
+cursor:pointer;
+
+background:#00bfff;
+
+color:white;
+
+}
+
+.main-btn:hover{
+
+box-shadow:
+0 0 20px #00ffff;
+
+}
+
+/* FORM PAGE */
+
+.form-card{
+
+width:90%;
+
+max-width:1000px;
+
+margin:40px auto;
+
+padding:30px;
+
+background:
+rgba(255,255,255,.08);
+
+backdrop-filter:
+blur(15px);
+
+border-radius:25px;
+
+}
+
+.form-card h1{
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:15px;
+
+}
+
+input,
+select{
+
+padding:12px;
+
+border:none;
+
+border-radius:10px;
+
+font-size:15px;
+
+}
+
+.submit-btn{
+
+width:100%;
+
+padding:15px;
+
+margin-top:20px;
+
+border:none;
+
+border-radius:12px;
+
+font-size:18px;
+
+cursor:pointer;
+
+background:#00bfff;
+
+color:white;
+
+}
+
+.result{
+
+display:none;
+
+margin-top:25px;
+
+padding:20px;
+
+background:
+rgba(255,255,255,.1);
+
+border-radius:15px;
+
+}
+
+.meter{
+
+width:100%;
+
+height:25px;
+
+background:#ddd;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin:15px 0;
+
+}
+
+.fill{
+
+height:100%;
+
+background:limegreen;
+
+}
+
+.algo-section{
+
+display:none;
+
+margin-top:25px;
+
+}
+
+.algo-card{
+
+padding:15px;
+
+margin-top:10px;
+
+border-left:5px solid cyan;
+
+background:
+rgba(255,255,255,.08);
+
+border-radius:10px;
+
+}
+
+.back-btn{
+
+display:none;
+
+width:100%;
+
+padding:15px;
+
+margin-top:20px;
+
+border:none;
+
+border-radius:12px;
+
+background:#001f3f;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HOME PAGE -->
+
+<div id="homePage"
+class="page active">
+
+<div class="visitor">
+
+👤 Visits :
+<span id="visitCount">
+0
+</span>
+
+</div>
+
+<div class="tipsBox">
+
+<h3>
+💡 Health Reminder
+</h3>
+
+<p id="tipText">
+
+💧 Drink More Water
+
+</p>
+
+</div>
+
+<div class="hero">
+
+<h1>
+
+INTELLIGENCE IN HEALTH CARE
+
+</h1>
+
+<p>
+
+"Your Health Is Your Greatest Wealth"
+
+</p>
+
+<button
+
+class="main-btn"
+
+onclick="showPage('healthPage')">
+
+Check Health Status
+
+</button>
+
+</div>
+
+</div>
+<!-- HEALTH PAGE -->
+
+<div id="healthPage" class="page">
+
+<div class="form-card">
+
+<h1>Patient Health Status</h1>
+
+<div class="grid">
+
+<input type="text" id="name" placeholder="Patient Name">
+
+<select id="gender">
+<option>Male</option>
+<option>Female</option>
+</select>
+
+<input type="number" id="age" placeholder="Age">
+
+<input type="number" id="height" placeholder="Height (cm)">
+
+<input type="number" id="weight" placeholder="Weight (kg)">
+
+<input type="number" id="bp" placeholder="Blood Pressure">
+
+<input type="number" id="sugar" placeholder="Blood Sugar">
+
+<input type="number" id="cholesterol" placeholder="Cholesterol">
+
+<input type="number" id="heartRate" placeholder="Heart Rate">
+
+<input type="text" id="bmi" placeholder="BMI" readonly>
+
+</div>
+
+<button class="submit-btn" onclick="predictHealth()">
+
+Submit
+
+</button>
+
+<div id="result" class="result"></div>
+
+<div id="algoSection" class="algo-section">
+
+<h2>🏥 Health Analysis Report</h2>
+
+<div class="algo-card">
+
+<h3>🩸 Blood Sugar Analysis</h3>
+
+<p id="linearResult">
+Estimated Blood Sugar Level
+</p>
+
+</div>
+
+<div class="algo-card">
+
+<h3>🩺 Disease Prediction</h3>
+
+<p id="logisticResult">
+Predicted Health Condition
+</p>
+
+</div>
+
+<div class="algo-card">
+
+<h3>👥 Similar Patient Analysis</h3>
+
+<p id="knnResult">
+Matched Patient Group
+</p>
+
+</div>
+
+<div class="algo-card">
+
+<h3>📋 Diagnosis Explanation</h3>
+
+<p id="treeResult">
+Main Reasons
+</p>
+
+</div>
+
+<div class="algo-card">
+
+<h3>❤️ Health Risk Classification</h3>
+
+<p id="rfResult">
+Overall Health Status
+</p>
+
+</div>
+
+<div class="algo-card">
+
+<h3>📊 Patient Category Analysis</h3>
+
+<p id="kmeansResult">
+Patient Category
+</p>
+
+</div>
+
+<div class="algo-card">
+
+<h3>🔍 Key Health Factors</h3>
+
+<p id="pcaResult">
+Most Influential Factors
+</p>
+
+</div>
+
+</div>
+
+<button
+id="backBtn"
+class="back-btn"
+onclick="showPage('homePage')">
+
+🏠 Back To Homepage
+
+</button>
+
+</div>
+
+</div>
+<script>
+
+/* ==========================
+   VISITOR COUNTER
+========================== */
+
+let visits =
+localStorage.getItem("visits") || 0;
+
+visits++;
+
+localStorage.setItem(
+"visits",
+visits
+);
+
+document.getElementById(
+"visitCount"
+).innerHTML = visits;
+
+
+/* ==========================
+   HEALTH TIPS ROTATION
+========================== */
+
+const tips = [
+
+"💧 Drink More Water",
+
+"🏃 Exercise Daily",
+
+"🥗 Eat Healthy Foods",
+
+"😴 Sleep 8 Hours Daily",
+
+"❤️ Protect Your Heart",
+
+"🚭 Avoid Smoking",
+
+"🧘 Reduce Stress",
+
+"🍎 Eat Fresh Fruits",
+
+"🚶 Walk 5000+ Steps Daily",
+
+"💙 Stay Healthy"
+
+];
+
+let currentTip = 0;
+
+setInterval(() => {
+
+currentTip++;
+
+if(currentTip >= tips.length){
+
+currentTip = 0;
+
+}
+
+document.getElementById(
+"tipText"
+).innerHTML =
+tips[currentTip];
+
+},3000);
+
+
+/* ==========================
+   PAGE NAVIGATION
+========================== */
+
+function showPage(page){
+
+document
+.querySelectorAll(".page")
+.forEach(p => {
+
+p.classList.remove(
+"active"
+);
+
+});
+
+document
+.getElementById(page)
+.classList.add(
+"active"
+);
+
+}
+
+
+/* ==========================
+   HEALTH PREDICTION
+========================== */
+
+function predictHealth(){
+
+let age =
+parseInt(
+document.getElementById(
+"age"
+).value
+) || 0;
+
+let height =
+parseFloat(
+document.getElementById(
+"height"
+).value
+) || 0;
+
+let weight =
+parseFloat(
+document.getElementById(
+"weight"
+).value
+) || 0;
+
+let bp =
+parseInt(
+document.getElementById(
+"bp"
+).value
+) || 0;
+
+let sugar =
+parseInt(
+document.getElementById(
+"sugar"
+).value
+) || 0;
+
+let cholesterol =
+parseInt(
+document.getElementById(
+"cholesterol"
+).value
+) || 0;
+
+let heartRate =
+parseInt(
+document.getElementById(
+"heartRate"
+).value
+) || 0;
+
+
+/* BMI */
+
+let bmi = 0;
+
+if(height > 0){
+
+bmi =
+weight /
+((height/100) *
+(height/100));
+
+}
+
+document.getElementById(
+"bmi"
+).value =
+bmi.toFixed(1);
+
+
+/* RISK SCORE */
+
+let score = 0;
+
+if(age > 50)
+score += 1;
+
+if(bp > 140)
+score += 2;
+
+if(sugar > 180)
+score += 2;
+
+if(cholesterol > 240)
+score += 2;
+
+if(bmi > 30)
+score += 2;
+
+if(heartRate > 100)
+score += 1;
+
+
+/* CLASSIFICATION */
+
+let disease = "";
+let level = "";
+let summary = "";
+
+if(score <= 2){
+
+disease =
+"No Major Disease";
+
+level =
+"Healthy";
+
+summary =
+"Your health indicators are within normal limits.";
+
+}
+
+else if(score <= 4){
+
+disease =
+"Possible Diabetes";
+
+level =
+"Low Risk";
+
+summary =
+"Some parameters indicate early diabetic symptoms.";
+
+}
+
+else if(score <= 7){
+
+disease =
+"Heart Disease Risk";
+
+level =
+"Medium Risk";
+
+summary =
+"Several parameters indicate cardiovascular risk.";
+
+}
+
+else{
+
+disease =
+"Heart Disease + Diabetes";
+
+level =
+"High Risk";
+
+summary =
+"Multiple health indicators exceed safe ranges.";
+
+}
+
+
+/* RISK PERCENTAGE */
+
+let percent =
+Math.min(
+score * 12.5,
+100
+);
+
+
+/* MAIN RESULT */
+
+document.getElementById(
+"result"
+).style.display =
+"block";
+
+document.getElementById(
+"result"
+).innerHTML = `
+
+<h2>Prediction Result</h2>
+
+<br>
+
+<p>
+<b>Disease :</b>
+${disease}
+</p>
+
+<br>
+
+<p>
+<b>Risk Level :</b>
+${level}
+</p>
+
+<div class="meter">
+
+<div
+class="fill"
+style="
+width:${percent}%">
+</div>
+
+</div>
+
+<p>
+
+<b>Risk Score :</b>
+
+${percent.toFixed(0)}%
+
+</p>
+
+<br>
+
+<h3>Summary</h3>
+
+<p>
+${summary}
+</p>
+
+<br>
+
+<h3>Recommendations</h3>
+
+<ul>
+
+<li>Drink 3-4 litres of water daily.</li>
+
+<li>Exercise for at least 30 minutes.</li>
+
+<li>Avoid junk food.</li>
+
+<li>Reduce sugar intake.</li>
+
+<li>Monitor blood pressure regularly.</li>
+
+<li>Take routine medical checkups.</li>
+
+</ul>
+
+<br>
+
+<h3>Disclaimer</h3>
+
+<p>
+
+This project is for educational purposes only.
+
+It should not be used as a medical diagnosis.
+
+</p>
+
+`;
+
+
+/* ==========================
+   HEALTH ANALYSIS REPORT
+========================== */
+
+document.getElementById(
+"algoSection"
+).style.display =
+"block";
+
+
+/* Blood Sugar Analysis */
+
+let predictedSugar =
+Math.round(
+sugar * 1.05
+);
+
+document.getElementById(
+"linearResult"
+).innerHTML =
+
+"Estimated Blood Sugar Level : " +
+
+predictedSugar +
+
+" mg/dL";
+
+
+/* Disease Prediction */
+
+document.getElementById(
+"logisticResult"
+).innerHTML =
+
+"Predicted Health Condition : " +
+
+disease;
+
+
+/* Similar Patient Analysis */
+
+let cluster =
+
+score > 5
+
+?
+
+"High Risk Cluster"
+
+:
+
+"Healthy Cluster";
+
+document.getElementById(
+"knnResult"
+).innerHTML =
+
+"Matched Patient Group : " +
+
+cluster;
+
+
+/* Diagnosis Explanation */
+
+document.getElementById(
+"treeResult"
+).innerHTML =
+
+"Main Reasons : Blood Sugar, BMI, Blood Pressure and Age";
+
+
+/* Health Risk Classification */
+
+document.getElementById(
+"rfResult"
+).innerHTML =
+
+"Overall Health Status : " +
+
+level;
+
+
+/* Patient Category Analysis */
+
+document.getElementById(
+"kmeansResult"
+).innerHTML =
+
+"Patient Category : " +
+
+cluster;
+
+
+/* Key Health Factors */
+
+document.getElementById(
+"pcaResult"
+).innerHTML =
+
+"Most Influential Factors : Blood Sugar, BMI, Blood Pressure";
+
+
+/* SHOW BACK BUTTON */
+
+document.getElementById(
+"backBtn"
+).style.display =
+"block";
+
+}
+
+</script>
+
+</body>
+</html>
